@@ -1,0 +1,23 @@
+cache-directory/*
+*.pyc
+lib/*
+.pytest_cache/*
+
+# Rever
+rever/
+
+instance/*.json
+download/*
+.idea/
+
+
+*.egg-info
+*.egg-info/
+bin
+develop-eggs
+dist
+lib
+lib64
+eggs
+parts
+.installed.cfg
