@@ -14,7 +14,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="diffpy.nmf_mapping",
-    version="0.0.1",
+    version='1.0.0',
     author="Simon J.L. Billinge",
     author_email="sb2896@columbia.edu",
     description="Run NMF analysis on PDF and XRD data",
