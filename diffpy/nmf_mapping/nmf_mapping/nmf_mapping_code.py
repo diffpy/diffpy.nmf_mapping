@@ -293,7 +293,7 @@ def component_ratio_plot(df_component_weight_timeseries, show=True):
         ax.plot(df.loc[component].to_numpy(), '--s', label=component)
     ax.legend(loc='best')
     ax.set_xlabel('Reaction time (a.u.)')
-    ax.set_ylabel('Weights')
+    ax.set_ylabel('Weight')
     ax.set_title('NMF Weights')
 
     if show:
