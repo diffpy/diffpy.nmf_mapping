@@ -7,10 +7,11 @@ import numpy as np
 import pandas as pd
 from pathlib import Path
 import matplotlib.pyplot as plt
+
 try:
     from bg_mpl_stylesheet.bg_mpl_stylesheet import bg_mpl_style
 except ImportError:
-    print('bg_mpl_style not found. Using generic matplotlib style.')
+    print("bg_mpl_style not found. Using generic matplotlib style.")
 from diffpy.utils.parsers.loaddata import loadData
 from scipy import interpolate
 from sklearn.decomposition import NMF, PCA
@@ -18,6 +19,7 @@ from sklearn.exceptions import ConvergenceWarning
 import re
 
 import warnings
+
 warnings.filterwarnings("ignore", category=FutureWarning)
 warnings.filterwarnings("ignore", category=ConvergenceWarning)
 
@@ -27,12 +29,12 @@ def atoi(text):
 
 
 def natural_keys_file_name(text):
-    '''
+    """
     alist.sort(key=natural_keys) sorts in human order
     http://nedbatchelder.com/blog/200712/human_sorting.html
     (See Toothy's implementation in the comments)
-    '''
-    return [atoi(c) for c in re.split(r'(\d+)', text.stem)]
+    """
+    return [atoi(c) for c in re.split(r"(\d+)", text.stem)]
 
 
 def load_data(dir, xrd=False):
@@ -56,19 +58,19 @@ def load_data(dir, xrd=False):
     """
     dir = Path(dir)
     if xrd:
-        data_list = list(dir.glob('*.xy'))
+        data_list = list(dir.glob("*.xy"))
         if len(data_list) == 0:
-            data_list = list(dir.glob('*.xye'))
+            data_list = list(dir.glob("*.xye"))
         if len(data_list) == 0:
-            data_list = list(dir.glob('*.dat'))
+            data_list = list(dir.glob("*.dat"))
         if len(data_list) == 0:
-            raise FileNotFoundError('No xy, xye, or dat files found')
+            raise FileNotFoundError("No xy, xye, or dat files found")
     else:
-        data_list = list(dir.glob('*.gr'))
+        data_list = list(dir.glob("*.gr"))
         if len(data_list) == 0:
-            data_list = list(dir.glob('*.dat'))
+            data_list = list(dir.glob("*.dat"))
         if len(data_list) == 0:
-            raise FileNotFoundError('No gr or dat files found')
+            raise FileNotFoundError("No gr or dat files found")
     n = len(data_list)
     data_list.sort(key=natural_keys_file_name)
     l = loadData(data_list[0]).shape[0]
@@ -81,9 +83,9 @@ def load_data(dir, xrd=False):
         x = new_dat[:, 0]
         y = new_dat[:, 1]
         if len(x) != len(x_set) or not all(x == x_set):
-            f = interpolate.interp1d(x, y, bounds_error=False, fill_value='extrapolate')
-            data_arr[i][:,1] = f(x_set)
-            data_arr[i][:,0] = x_set
+            f = interpolate.interp1d(x, y, bounds_error=False, fill_value="extrapolate")
+            data_arr[i][:, 1] = f(x_set)
+            data_arr[i][:, 0] = x_set
         else:
             data_arr[i] = new_dat[:, :2]
 
@@ -97,8 +99,9 @@ def load_data(dir, xrd=False):
 
 
 # TODO Add regularization on the frobenius norm in order to prevent creation of an excessive number of components
-def NMF_decomposition(data_arr, x_range=None, thresh=None, additional_comp=False, improve_thresh=None, n_iter=None,
-                      pca_thresh=None):
+def NMF_decomposition(
+    data_arr, x_range=None, thresh=None, additional_comp=False, improve_thresh=None, n_iter=None, pca_thresh=None
+):
     """
     Takes a 3D array of PDFs and returns the structurally significant
     components present in all of the PDFs (or XRD) provided in r vs gr format,
@@ -139,12 +142,15 @@ def NMF_decomposition(data_arr, x_range=None, thresh=None, additional_comp=False
         n_iter = 1000
 
     if x_range:
-        for (x_low, x_high) in x_range:
+        for x_low, x_high in x_range:
             if x_low > x_high:
-                raise ValueError('Invalid x-range')
+                raise ValueError("Invalid x-range")
             else:
-                df_list.append(x_vs_y_df_preprocess[(x_vs_y_df_preprocess.index >= x_low) &
-                                                      (x_vs_y_df_preprocess.index <= x_high)])
+                df_list.append(
+                    x_vs_y_df_preprocess[
+                        (x_vs_y_df_preprocess.index >= x_low) & (x_vs_y_df_preprocess.index <= x_high)
+                    ]
+                )
         x_vs_y_df = pd.concat(df_list)
     else:
         x_vs_y_df = x_vs_y_df_preprocess
@@ -175,9 +181,9 @@ def NMF_decomposition(data_arr, x_range=None, thresh=None, additional_comp=False
     df_reconstruction_error = pd.DataFrame(pd.Series(nmf_loss))
     df_reconstruction_error.index = df_reconstruction_error.index + 1
     if thresh is None:
-        if improve_thresh is not  None:
+        if improve_thresh is not None:
             if improve_thresh > 1 or improve_thresh < 0:
-                raise ValueError('Invalid improvement threshold ratio. Must be between 0 and 1.')
+                raise ValueError("Invalid improvement threshold ratio. Must be between 0 and 1.")
             thresh = nmf_ncomp_selection(nmf_loss, rtol=improve_thresh)
         elif pca_thresh:
             thresh = pca_number_components
@@ -206,7 +212,7 @@ def NMF_decomposition(data_arr, x_range=None, thresh=None, additional_comp=False
     return df_components, df_component_weight_timeseries, df_reconstruction_error
 
 
-def component_plot(df_components, xrd=False, x_units=None,  show=True):
+def component_plot(df_components, xrd=False, x_units=None, show=True):
     """
     Takes a dataframe containing the NMF components as columns and x index,
     Returns a matplotlib figure representing the constituent component plot
@@ -242,17 +248,17 @@ def component_plot(df_components, xrd=False, x_units=None,  show=True):
     # seq to align with input phase
     for i, s in enumerate(data_list):
         ax.plot(df.index.to_numpy(dtype=np.single), df[s].to_numpy() + i * shift, label=s)
-    ax.legend(loc='best')
+    ax.legend(loc="best")
     if xrd:
         if x_units == "twotheta" or x_units == "ttheta":
-            ax.set_xlabel(r'2($\mathrm{\Theta}$)')
+            ax.set_xlabel(r"2($\mathrm{\Theta}$)")
         else:
-            ax.set_xlabel(r'$Q (nm^{-1})$')
-        ax.set_ylabel(r'$Intensity$')
+            ax.set_xlabel(r"$Q (nm^{-1})$")
+        ax.set_ylabel(r"$Intensity$")
     else:
-        ax.set_xlabel(r'r ($\mathrm{\AA}$)')
-        ax.set_ylabel(r'$G^e$')
-    ax.set_title('Structural Phase Components from NMF')
+        ax.set_xlabel(r"r ($\mathrm{\AA}$)")
+        ax.set_ylabel(r"$G^e$")
+    ax.set_title("Structural Phase Components from NMF")
     ax.xaxis.set_major_locator(plt.MaxNLocator(9))
 
     if show:
@@ -290,11 +296,11 @@ def component_ratio_plot(df_component_weight_timeseries, show=True):
     fig, ax = plt.subplots(figsize=(6, 8))
     # seq to align with input phase
     for component in component_list:
-        ax.plot(df.loc[component].to_numpy(), '--s', label=component)
-    ax.legend(loc='best')
-    ax.set_xlabel('Reaction time (a.u.)')
-    ax.set_ylabel('Weight')
-    ax.set_title('NMF Weights')
+        ax.plot(df.loc[component].to_numpy(), "--s", label=component)
+    ax.legend(loc="best")
+    ax.set_xlabel("Reaction time (a.u.)")
+    ax.set_ylabel("Weight")
+    ax.set_title("NMF Weights")
 
     if show:
         plt.show()
@@ -330,12 +336,12 @@ def reconstruction_error_plot(df_reconstruction_error, show=True):
     fig, ax = plt.subplots(figsize=(6, 8))
     # assumes that they are in the correct order
     ax.plot(df.index.to_numpy(), df[df.columns[0]].to_numpy())
-    ax.set_xlabel('Number of components')
-    ax.set_ylabel('Reconstruction error')
+    ax.set_xlabel("Number of components")
+    ax.set_ylabel("Reconstruction error")
     if len(df[df.columns[0]].to_numpy()) == 10:
-        ax.set_title('Reconstruction Error\nFirst Ten Components')
+        ax.set_title("Reconstruction Error\nFirst Ten Components")
     else:
-        ax.set_title('Reconstruction Error')
+        ax.set_title("Reconstruction Error")
     plt.xticks(df.index.to_numpy())
 
     if show:
@@ -372,9 +378,9 @@ def explained_variance_plot(df_explained_var_ratio, show=True):
     fig, ax = plt.subplots(figsize=(6, 8))
     # assumes that they are in the correct order
     ax.plot(df.index.to_numpy(), df[df.columns[0]].to_numpy())
-    ax.set_xlabel('Number of components')
-    ax.set_ylabel('Explained variance')
-    ax.set_title('PCA Explained Variance')
+    ax.set_xlabel("Number of components")
+    ax.set_ylabel("Explained variance")
+    ax.set_title("PCA Explained Variance")
     plt.xticks(df.index.to_numpy())
 
     if show:
@@ -398,11 +404,11 @@ def nmf_ncomp_selection(loss, rtol=None):
     # find improvement ratio after adding subsequent comp
     imp_ratio = np.abs(np.diff(loss) / loss[:-1])
     # comma here to make tuple an ndarray
-    inds, = np.where(imp_ratio <= rtol)
+    (inds,) = np.where(imp_ratio <= rtol)
     if not list(inds) and rtol_unset:
         print("Improvement ratio of 1E-3 not met, attempting 1E-2...")
         rtol = 1e-2
-        inds, = np.where(imp_ratio <= rtol)
+        (inds,) = np.where(imp_ratio <= rtol)
         if not list(inds):
             print("Improvement ratio of 1E-2 not met. Inspect data and impose manual cutoff")
             len(loss)

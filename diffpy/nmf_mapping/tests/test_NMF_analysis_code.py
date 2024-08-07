@@ -7,15 +7,13 @@ from pathlib import Path
 
 dir = Path(__file__).parent.resolve()
 
-data_dir = os.path.join(dir, 'data/synthetic_r_vs_gr')
+data_dir = os.path.join(dir, "data/synthetic_r_vs_gr")
 
-test_map = [([data_dir, '--xrange', '5,10'], 'output_1',
-             'Number of components: 3\n'),
-            ([data_dir], 'output_2',
-             'Number of components: 3\n'),
-            ([data_dir, '--xrange', '5,10', '12,15'], 'output_3',
-             'Number of components: 3\n')
-            ]
+test_map = [
+    ([data_dir, "--xrange", "5,10"], "output_1", "Number of components: 3\n"),
+    ([data_dir], "output_2", "Number of components: 3\n"),
+    ([data_dir, "--xrange", "5,10", "12,15"], "output_3", "Number of components: 3\n"),
+]
 
 
 @pytest.fixture(scope="session")
@@ -46,7 +44,7 @@ def test_nmf_mapping_code(tm, temp_dir, capsys):
     main(args=data_dir)
     out, err = capsys.readouterr()
     assert out == tm[2]
-    results_dir = os.path.join(working_dir, 'nmf_result')
+    results_dir = os.path.join(working_dir, "nmf_result")
     os.chdir(results_dir)
     expected_base = os.path.join(os.path.dirname(__file__), "output")
     test_specific_dir = os.path.join(expected_base, tm[1])
