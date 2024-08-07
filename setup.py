@@ -14,27 +14,26 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="diffpy.nmf_mapping",
-    version='1.0.0',
+    version="1.0.0",
     author="Simon J.L. Billinge",
     author_email="sb2896@columbia.edu",
     description="Run NMF analysis on PDF and XRD data",
     long_description=long_description,
-    test_suite='tests',
+    test_suite="tests",
     long_description_content_type="text/markdown",
-    packages=find_packages(exclude=['tests', 'applications', 'examples']),
+    packages=find_packages(exclude=["tests", "applications", "examples"]),
     classifiers=[
-        'Programming Language :: Python :: 3',
-        'Operating System :: OS Independent',
+        "Programming Language :: Python :: 3",
+        "Operating System :: OS Independent",
     ],
-    entry_points={'console_scripts': [
-            'nmf_mapping = diffpy.nmf_mapping.nmf_mapping.main:main'
-            ],
-        },
-    data_files = [("", ["LICENSE.txt"])],
-    url='http://www.diffpy.org/',
-    download_url='http://www.diffpy.org/packages/',
-    license='BSD',
+    entry_points={
+        "console_scripts": ["nmf_mapping = diffpy.nmf_mapping.nmf_mapping.main:main"],
+    },
+    data_files=[("", ["LICENSE.txt"])],
+    url="http://www.diffpy.org/",
+    download_url="http://www.diffpy.org/packages/",
+    license="BSD",
     keywords="diffpy PDF NMF",
-    python_requires='>=3.6',
+    python_requires=">=3.6",
     zip_safe=False,
 )
