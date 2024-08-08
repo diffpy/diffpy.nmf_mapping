@@ -3,24 +3,20 @@ Author: Zachary Thatcher
 Local NMF Analysis of PDFs for PDFitc.
 """
 
+import re
+import warnings
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-
-try:
-    from bg_mpl_stylesheet.bg_mpl_stylesheet import bg_mpl_style
-except ImportError:
-    print("bg_mpl_style not found. Using generic matplotlib style.")
-import re
-import warnings
-
+from bg_mpl_stylesheet.bg_mpl_stylesheet import bg_mpl_style
 from diffpy.utils.parsers.loaddata import loadData
 from scipy import interpolate
 from sklearn.decomposition import NMF, PCA
 from sklearn.exceptions import ConvergenceWarning
 
+plt.style.use(bg_mpl_style)
 warnings.filterwarnings("ignore", category=FutureWarning)
 warnings.filterwarnings("ignore", category=ConvergenceWarning)
 
@@ -237,10 +233,7 @@ def component_plot(df_components, xrd=False, x_units=None, show=True):
         figure on absolute scale
 
     """
-    try:
-        plt.style.use(bg_mpl_style)
-    except Exception:
-        pass
+
     df = df_components.copy()
     data_list = df.columns
 
@@ -289,13 +282,9 @@ def component_ratio_plot(df_component_weight_timeseries, show=True):
         figure on absolute scale
 
     """
-    try:
-        plt.style.use(bg_mpl_style)
-    except Exception:
-        pass
+
     df = df_component_weight_timeseries.copy()
     component_list = df.index
-
     fig, ax = plt.subplots(figsize=(6, 8))
     # seq to align with input phase
     for component in component_list:
@@ -330,10 +319,7 @@ def reconstruction_error_plot(df_reconstruction_error, show=True):
         figure on absolute scale with removed files
 
     """
-    try:
-        plt.style.use(bg_mpl_style)
-    except Exception:
-        pass
+
     df = df_reconstruction_error.copy()
 
     fig, ax = plt.subplots(figsize=(6, 8))
@@ -372,10 +358,7 @@ def explained_variance_plot(df_explained_var_ratio, show=True):
         figure on absolute scale with removed files
 
     """
-    try:
-        plt.style.use(bg_mpl_style)
-    except Exception:
-        pass
+
     df = df_explained_var_ratio.copy()
 
     fig, ax = plt.subplots(figsize=(6, 8))
