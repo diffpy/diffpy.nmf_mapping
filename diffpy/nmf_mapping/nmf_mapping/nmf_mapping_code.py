@@ -239,7 +239,7 @@ def component_plot(df_components, xrd=False, x_units=None, show=True):
     """
     try:
         plt.style.use(bg_mpl_style)
-    except:
+    except Exception:
         pass
     df = df_components.copy()
     data_list = df.columns
@@ -291,7 +291,7 @@ def component_ratio_plot(df_component_weight_timeseries, show=True):
     """
     try:
         plt.style.use(bg_mpl_style)
-    except:
+    except Exception:
         pass
     df = df_component_weight_timeseries.copy()
     component_list = df.index
@@ -332,7 +332,7 @@ def reconstruction_error_plot(df_reconstruction_error, show=True):
     """
     try:
         plt.style.use(bg_mpl_style)
-    except:
+    except Exception:
         pass
     df = df_reconstruction_error.copy()
 
@@ -374,7 +374,7 @@ def explained_variance_plot(df_explained_var_ratio, show=True):
     """
     try:
         plt.style.use(bg_mpl_style)
-    except:
+    except Exception:
         pass
     df = df_explained_var_ratio.copy()
 

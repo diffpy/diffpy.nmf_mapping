@@ -37,7 +37,7 @@ def main(args=None):
         try:
             l, h = map(int, s.split(","))
             return l, h
-        except:
+        except Exception:
             raise TypeError("r range must be low, high")
 
     # args
