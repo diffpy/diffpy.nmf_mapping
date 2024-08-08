@@ -6,14 +6,13 @@
 Packages:   diffpy.nmf_mapping
 """
 
-import setuptools
-from setuptools import find_packages
+from setuptools import find_packages, setup
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 
-setuptools.setup(
+setup(
     name="diffpy.nmf_mapping",
     version="1.0.0",
     author="Simon J.L. Billinge",
