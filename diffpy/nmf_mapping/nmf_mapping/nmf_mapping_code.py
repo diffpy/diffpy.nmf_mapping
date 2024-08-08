@@ -10,13 +10,13 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from bg_mpl_stylesheet.bg_mpl_stylesheet import bg_mpl_style
+from bg_mpl_stylesheets.styles import all_styles
 from diffpy.utils.parsers.loaddata import loadData
 from scipy import interpolate
 from sklearn.decomposition import NMF, PCA
 from sklearn.exceptions import ConvergenceWarning
 
-plt.style.use(bg_mpl_style)
+plt.style.use(all_styles["bg-style"])
 warnings.filterwarnings("ignore", category=FutureWarning)
 warnings.filterwarnings("ignore", category=ConvergenceWarning)
 

@@ -4,4 +4,4 @@ scipy
 diffpy.utils
 pandas
 matplotlib
-bg_mpl_stylesheet
+bg-mpl-stylesheets
