@@ -34,11 +34,14 @@ def main(args=None):
     parser = ArgumentParser(prog="nmf_mapping", description=_BANNER, formatter_class=RawTextHelpFormatter)
 
     def tup(s):
+        if not isinstance(s, str):
+            raise TypeError("Input must be a string of two integers separated by a comma.")
+
         try:
             l, h = map(int, s.split(","))
             return l, h
-        except Exception:
-            raise TypeError("r range must be low, high")
+        except ValueError:
+            raise ValueError("Input must be two integers separated by a comma (e.g., '1,5')")
 
     # args
     parser.add_argument(
