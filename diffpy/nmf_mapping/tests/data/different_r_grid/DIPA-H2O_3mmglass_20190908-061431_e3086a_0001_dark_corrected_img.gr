@@ -3,7 +3,7 @@
 wavelength = 0.1845
 dataformat = QA
 inputfile = DIPA-H2O_3mmglass_20190908-061431_e3086a_0001_dark_corrected_img.chi
-backgroundfile = 
+backgroundfile =
 mode = xray
 bgscale = 0.0
 composition = C6N
@@ -19,7 +19,7 @@ rpoly = 0.9
 [Misc]
 inputdir = /Users/sst/project/cal_and_int/int_20190906/chi
 savedir = /Users/sst/project/analysis/19st_amine/data/DIPA-H2O_3temp
-backgroundfilefull = 
+backgroundfilefull =
 
 #### start data
 #S 1

@@ -23,36 +23,36 @@ Input:
     - format: string (filepath)
         - eg: '/Users/zthatcher/Desktop/Data/nmf_mapping/time_data/' or . for cwd
 
-- save-files (optional): boolean as to whether or not you would like to save the dataframes, plots, and 
+- save-files (optional): boolean as to whether or not you would like to save the dataframes, plots, and
 components (note: pdf data saves as .cgr and xrd data saves as .xy)
     - format: boolean
         - eg: --save-files False
     - default: True
-    
+
 - threshold (optional and mut-exc to other thresholds): a threshold for the number of structural phases graphed (NMF components returned)
     - format as: integer
         - eg: --threshold 2
     - default: 10
-    
+
 - improve-thresh (optional and mut-exc to other thresholds): a threshold (between 0 and 1) for the relative improvement ratio necessary to
   add an additional component. Default is 0.001. 0.1 Recommended for real data.
     - format: float
         - eg: --improve-thresh 0.1
     - default = 0.001
-    
+
 - pca-thresh (optional and mut-exc to other thresholds): explained variance threshold for PCA component counting cutoff
     - format: float
         - eg: --pca-thresh 0.95
     - default = None
-    
+
 - n-iter (optional): total number of iterations to run NMF algo. Defaults to 1000. 10000 typical to publish.
     - format: int
         - eg: --n-iter 10000
     - default: 1000
 
-- x-range (optional): the active x-range over which to run the NMF analysis (must be between shortest and 
+- x-range (optional): the active x-range over which to run the NMF analysis (must be between shortest and
 longest range in the set of files)
-    - format: pair of integers representing the lower r bound and the upper r bound with a comma between 
+    - format: pair of integers representing the lower r bound and the upper r bound with a comma between
     the lower and upper bound
         -  eg: --xrange 5,10 12,15
     - default: entire range
@@ -71,7 +71,7 @@ longest range in the set of files)
     - format: boolean
         - eg: --show False
     - default: True
-    
+
 Returns:
 - Figure One: PDF or XRD pattern of structural phase components contributing to the NMF reconstruction
 - Figure Two: Weights of the phase components plotted in Figure One
@@ -81,4 +81,3 @@ Returns:
 Example:
 
 nmf_mapping . --threshold 3 --xrange 5,10 --show True
-

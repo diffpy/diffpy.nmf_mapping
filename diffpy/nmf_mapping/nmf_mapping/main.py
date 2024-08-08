@@ -1,11 +1,12 @@
 import os
 import sys
-from argparse import ArgumentParser, RawTextHelpFormatter, Namespace
 import time
+from argparse import ArgumentParser, Namespace, RawTextHelpFormatter
 from datetime import datetime
 
-from diffpy.nmf_mapping import nmf
 import numpy as np
+
+from diffpy.nmf_mapping import nmf
 
 
 def boolean_string(s):
@@ -24,9 +25,9 @@ def main(args=None):
     """
 
     _BANNER = """
-    This is a package which takes a directory of 1D diffraction files 
-    (xrd or pdf) and returns json files containing the decomposed components, 
-    the phase fraction of these components from file to file, 
+    This is a package which takes a directory of 1D diffraction files
+    (xrd or pdf) and returns json files containing the decomposed components,
+    the phase fraction of these components from file to file,
     as well as the reconstruction error as a fxn of component
     """
 
