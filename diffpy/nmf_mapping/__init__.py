@@ -21,4 +21,9 @@ __id__ = "$Id$"
 # obtain version information
 __version__ = "1.0.0"
 
+# top-level import
+from diffpy.nmf_mapping.nmf_mapping import nmf_mapping_code as nmf
+
+__all__ = ["nmf"]
+
 # End of file
