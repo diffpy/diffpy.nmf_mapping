@@ -158,7 +158,8 @@ def NMF_decomposition(
 
     nmf_loss = []
     pca_explained_variance = []
-    # Assuming that the algorithm won't be able to decompose a timeseries of less than x scans into x or more components
+    # Assuming that the algorithm won't be able to decompose a timeseries of less than x scans into
+    # x or more components
     if thresh is None:
         if len(x_vs_y_df.columns) < 10:
             max_comp = len(x_vs_y_df.columns)
@@ -193,7 +194,8 @@ def NMF_decomposition(
 
         if additional_comp:
             thresh += 1
-    # Assuming that the algorithm won't be able to decompose a timeseries of less than x scans into x or more components
+    # Assuming that the algorithm won't be able to decompose a timeseries of less than x scans into
+    # x or more components
     if len(x_vs_y_df.columns) < thresh:
         n_comp = len(x_vs_y_df.columns)
     else:
