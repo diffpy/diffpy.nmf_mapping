@@ -74,8 +74,8 @@ def load_data(dir, xrd=False):
             raise FileNotFoundError("No gr or dat files found")
     n = len(data_list)
     data_list.sort(key=natural_keys_file_name)
-    l = loadData(data_list[0]).shape[0]
-    data_arr = np.zeros((n, l, 2))
+    data_length = loadData(data_list[0]).shape[0]
+    data_arr = np.zeros((n, data_length, 2))
 
     # if not on the same x grid, interpolate, use first data set as standard
     x_set = loadData(data_list[0])[:, 0]
