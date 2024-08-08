@@ -1,7 +1,9 @@
-from diffpy.nmf_mapping import nmf
-import numpy as np
 import os
 import pathlib
+
+import numpy as np
+
+from diffpy.nmf_mapping import nmf
 
 dir = pathlib.Path(__file__).parent.resolve()
 

@@ -3,22 +3,23 @@ Author: Zachary Thatcher
 Local NMF Analysis of PDFs for PDFitc.
 """
 
+from pathlib import Path
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from pathlib import Path
-import matplotlib.pyplot as plt
 
 try:
     from bg_mpl_stylesheet.bg_mpl_stylesheet import bg_mpl_style
 except ImportError:
     print("bg_mpl_style not found. Using generic matplotlib style.")
+import re
+import warnings
+
 from diffpy.utils.parsers.loaddata import loadData
 from scipy import interpolate
 from sklearn.decomposition import NMF, PCA
 from sklearn.exceptions import ConvergenceWarning
-import re
-
-import warnings
 
 warnings.filterwarnings("ignore", category=FutureWarning)
 warnings.filterwarnings("ignore", category=ConvergenceWarning)

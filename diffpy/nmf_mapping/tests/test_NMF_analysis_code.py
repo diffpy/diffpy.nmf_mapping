@@ -1,9 +1,11 @@
-import pytest
 import os
-from diffpy.nmf_mapping.nmf_mapping.main import main
 import tempfile
-from shutil import rmtree
 from pathlib import Path
+from shutil import rmtree
+
+import pytest
+
+from diffpy.nmf_mapping.nmf_mapping.main import main
 
 dir = Path(__file__).parent.resolve()
 
