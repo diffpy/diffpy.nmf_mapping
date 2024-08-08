@@ -16,7 +16,7 @@ from scipy import interpolate
 from sklearn.decomposition import NMF, PCA
 from sklearn.exceptions import ConvergenceWarning
 
-plt.style.use(all_styles["bg-style"])
+plt.style.use(all_styles["bg_style"])
 warnings.filterwarnings("ignore", category=FutureWarning)
 warnings.filterwarnings("ignore", category=ConvergenceWarning)
 
