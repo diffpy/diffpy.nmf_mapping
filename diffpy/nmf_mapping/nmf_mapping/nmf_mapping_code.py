@@ -3,24 +3,20 @@ Author: Zachary Thatcher
 Local NMF Analysis of PDFs for PDFitc.
 """
 
+import re
+import warnings
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-
-try:
-    from bg_mpl_stylesheet.bg_mpl_stylesheet import bg_mpl_style
-except ImportError:
-    print("bg_mpl_style not found. Using generic matplotlib style.")
-import re
-import warnings
-
+from bg_mpl_stylesheets.styles import all_styles
 from diffpy.utils.parsers.loaddata import loadData
 from scipy import interpolate
 from sklearn.decomposition import NMF, PCA
 from sklearn.exceptions import ConvergenceWarning
 
+plt.style.use(all_styles["bg_style"])
 warnings.filterwarnings("ignore", category=FutureWarning)
 warnings.filterwarnings("ignore", category=ConvergenceWarning)
 
@@ -74,8 +70,8 @@ def load_data(dir, xrd=False):
             raise FileNotFoundError("No gr or dat files found")
     n = len(data_list)
     data_list.sort(key=natural_keys_file_name)
-    l = loadData(data_list[0]).shape[0]
-    data_arr = np.zeros((n, l, 2))
+    data_length = loadData(data_list[0]).shape[0]
+    data_arr = np.zeros((n, data_length, 2))
 
     # if not on the same x grid, interpolate, use first data set as standard
     x_set = loadData(data_list[0])[:, 0]
@@ -158,7 +154,8 @@ def NMF_decomposition(
 
     nmf_loss = []
     pca_explained_variance = []
-    # Assuming that the algorithm won't be able to decompose a timeseries of less than x scans into x or more components
+    # Assuming that the algorithm won't be able to decompose a timeseries of less than x scans into
+    # x or more components
     if thresh is None:
         if len(x_vs_y_df.columns) < 10:
             max_comp = len(x_vs_y_df.columns)
@@ -193,7 +190,8 @@ def NMF_decomposition(
 
         if additional_comp:
             thresh += 1
-    # Assuming that the algorithm won't be able to decompose a timeseries of less than x scans into x or more components
+    # Assuming that the algorithm won't be able to decompose a timeseries of less than x scans into
+    # x or more components
     if len(x_vs_y_df.columns) < thresh:
         n_comp = len(x_vs_y_df.columns)
     else:
@@ -235,10 +233,7 @@ def component_plot(df_components, xrd=False, x_units=None, show=True):
         figure on absolute scale
 
     """
-    try:
-        plt.style.use(bg_mpl_style)
-    except:
-        pass
+
     df = df_components.copy()
     data_list = df.columns
 
@@ -287,13 +282,9 @@ def component_ratio_plot(df_component_weight_timeseries, show=True):
         figure on absolute scale
 
     """
-    try:
-        plt.style.use(bg_mpl_style)
-    except:
-        pass
+
     df = df_component_weight_timeseries.copy()
     component_list = df.index
-
     fig, ax = plt.subplots(figsize=(6, 8))
     # seq to align with input phase
     for component in component_list:
@@ -328,10 +319,7 @@ def reconstruction_error_plot(df_reconstruction_error, show=True):
         figure on absolute scale with removed files
 
     """
-    try:
-        plt.style.use(bg_mpl_style)
-    except:
-        pass
+
     df = df_reconstruction_error.copy()
 
     fig, ax = plt.subplots(figsize=(6, 8))
@@ -370,10 +358,7 @@ def explained_variance_plot(df_explained_var_ratio, show=True):
         figure on absolute scale with removed files
 
     """
-    try:
-        plt.style.use(bg_mpl_style)
-    except:
-        pass
+
     df = df_explained_var_ratio.copy()
 
     fig, ax = plt.subplots(figsize=(6, 8))

@@ -12,7 +12,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 
-setuptools.setup(
+setup(
     name="diffpy.nmf_mapping",
     version="1.0.0",
     author="Simon J.L. Billinge",
