@@ -44,11 +44,19 @@ For more information about the diffpy.nmf_mapping library, please consult our `o
 Citation
 --------
 
-If you use diffpy.nmf_mapping in a scientific publication, please cite the following papers:
+If you use this program for a scientific research that leads
+to publication, we ask that you acknowledge use of the program
+by citing the following paper in your publication:
 
-[1] Z. A. Thatcher, C.-H. Liu, L. Yang, B. C. McBride, G. Thinh Tran, A. Wustrow, M. A. Karlsen, J. R. Neilson, D. B. Ravnsbæk, and S. J. L. Billinge. nmfMapping: a cloud-based web application for non-negative matrix factorization of powder diffraction and pair distribution function datasets. *Acta Crystallogr. A.* (2022). 78(3), 242-248. `DOI:10.1107/S2053273322002522 <https://doi.org/10.1107/S2053273322002522>`_
+   Z. A. Thatcher, C.-H. Liu, L. Yang, B. C. McBride, G. Thinh Tran, A. Wustrow, M. A. Karlsen, J. R. Neilson, D. B. Ravnsbæk, and S. J. L. Billinge,
+   `nmfMapping: a cloud-based web application for non-negative matrix factorization of powder diffraction and pair distribution function datasets
+   <https://doi.org/10.1107/S2053273322002522>`__,
+   *Acta Crystallogr. A* **78**(3), 242-248 (2022).
 
-[2] C.-H. Liu, C. J. Wright, R. Gu, S. Bandi, A. Wustrow, P. K. Todd, D. O'Nolan, M. L. Beauvais, J. R. Neilson, P. J. Chupas, K. W. Chapman, and S. J. L. Billinge. Validation of non-negative matrix factorization for rapid assessment of large sets of atomic pair distribution function data. *J. Appl. Cryst.* (2021). 54(3), 768-775. `DOI:10.1107/S160057672100265X <https://doi.org/10.1107/S160057672100265X>`_
+   C.-H. Liu, C. J. Wright, R. Gu, S. Bandi, A. Wustrow, P. K. Todd, D. O'Nolan, M. L. Beauvais, J. R. Neilson, P. J. Chupas, K. W. Chapman, and S. J. L. Billinge,
+   `Validation of non-negative matrix factorization for rapid assessment of large sets of atomic pair distribution function data
+   <https://doi.org/10.1107/S160057672100265X>`__,
+   *J. Appl. Cryst.* **54**(3), 768-775 (2022).
 
 Installation
 ------------
