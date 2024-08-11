@@ -51,12 +51,12 @@ by citing the following paper in your publication:
    Z. A. Thatcher, C.-H. Liu, L. Yang, B. C. McBride, G. Thinh Tran, A. Wustrow, M. A. Karlsen, J. R. Neilson, D. B. Ravnsbæk, and S. J. L. Billinge,
    `nmfMapping: a cloud-based web application for non-negative matrix factorization of powder diffraction and pair distribution function datasets
    <https://doi.org/10.1107/S2053273322002522>`__,
-   *Acta Crystallogr. A* **78**(3), 242-248 (2022).
+   *Acta Crystallogr. A* **78**, 242-248 (2022).
 
    C.-H. Liu, C. J. Wright, R. Gu, S. Bandi, A. Wustrow, P. K. Todd, D. O'Nolan, M. L. Beauvais, J. R. Neilson, P. J. Chupas, K. W. Chapman, and S. J. L. Billinge,
    `Validation of non-negative matrix factorization for rapid assessment of large sets of atomic pair distribution function data
    <https://doi.org/10.1107/S160057672100265X>`__,
-   *J. Appl. Cryst.* **54**(3), 768-775 (2022).
+   *J. Appl. Cryst.* **54**, 768-775 (2022).
 
 Installation
 ------------
