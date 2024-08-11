@@ -22,4 +22,3 @@ from diffpy.nmf_mapping.version import __version__
 assert __version__ or True
 
 # End of file
-
