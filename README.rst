@@ -53,6 +53,8 @@ by citing the following paper in your publication:
    <https://doi.org/10.1107/S2053273322002522>`__,
    *Acta Crystallogr. A* **78**, 242-248 (2022).
 
+and please consider citing
+
    C.-H. Liu, C. J. Wright, R. Gu, S. Bandi, A. Wustrow, P. K. Todd, D. O'Nolan, M. L. Beauvais, J. R. Neilson, P. J. Chupas, K. W. Chapman, and S. J. L. Billinge,
    `Validation of non-negative matrix factorization for rapid assessment of large sets of atomic pair distribution function data
    <https://doi.org/10.1107/S160057672100265X>`__,
