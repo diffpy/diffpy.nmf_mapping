@@ -1,6 +1,6 @@
 BSD 3-Clause License
 
-Copyright (c) 2009-2024, The Trustees of Columbia University
+Copyright (c) 2022-2024, The Trustees of Columbia University
 in the City of New York.
 All rights reserved.
 
