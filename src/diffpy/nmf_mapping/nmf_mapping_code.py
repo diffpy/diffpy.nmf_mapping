@@ -11,10 +11,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from bg_mpl_stylesheets.styles import all_styles
-from diffpy.utils.parsers.loaddata import loadData
 from scipy import interpolate
 from sklearn.decomposition import NMF, PCA
 from sklearn.exceptions import ConvergenceWarning
+
+from diffpy.utils.parsers.loaddata import loadData
 
 plt.style.use(all_styles["bg_style"])
 warnings.filterwarnings("ignore", category=FutureWarning)
