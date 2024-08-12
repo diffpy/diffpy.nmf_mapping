@@ -7,13 +7,13 @@
 # File coded by: Billinge Group members and community contributors.
 #
 # See GitHub contributions for a more detailed list of contributors.
-# https://github.com/diffpy/diffpy.nmf_mapping/graphs/contributors
+# https://github.com/diffpy/diffpy.snmf/graphs/contributors
 #
 # See LICENSE.rst for license information.
 #
 ##############################################################################
 """Convenience module for executing all unit tests with
-python -m \.tests.run
+python -m diffpy.snmf.tests.run
 """
 
 import sys
