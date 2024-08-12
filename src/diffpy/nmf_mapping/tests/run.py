@@ -13,7 +13,7 @@
 #
 ##############################################################################
 """Convenience module for executing all unit tests with
-python -m diffpy.snmf.tests.run
+python -m diffpy.nmf_mapping.tests.run
 """
 
 import sys
