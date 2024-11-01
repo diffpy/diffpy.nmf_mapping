@@ -13,12 +13,12 @@
 #
 ##############################################################################
 
-"""Blank namespace package for module diffpy."""
+"""Python package for running NMF analysis on PDF and XRD data."""
 
+# package version
+from diffpy.nmf_mapping.version import __version__
 
-from pkgutil import extend_path
-
-__path__ = extend_path(__path__, __name__)
+# silence the pyflakes syntax checker
+assert __version__ or True
 
 # End of file
-
