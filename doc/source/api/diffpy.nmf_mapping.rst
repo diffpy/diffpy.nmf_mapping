@@ -26,4 +26,3 @@ diffpy.nmf_mapping.main module
     :members:
     :undoc-members:
     :show-inheritance:
-
