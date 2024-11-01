@@ -5,7 +5,7 @@ from shutil import rmtree
 
 import pytest
 
-from diffpy.nmf_mapping.nmf_mapping.main import main
+from diffpy.nmf_mapping.main import main
 
 dir = Path(__file__).parent.resolve()
 
