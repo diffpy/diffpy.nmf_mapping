@@ -1,0 +1,7 @@
+numpy
+scikit-learn
+scipy
+diffpy.utils
+pandas
+matplotlib
+bg-mpl-stylesheets
