@@ -1,7 +1,9 @@
 Authors
 =======
 
-Billinge Group and community contibutors.
+Simon J. L. Billinge
+Zachary A. Thatcher
+Billinge Group and community contributors.
 
 Contributors
 ------------

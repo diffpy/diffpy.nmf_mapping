@@ -3,5 +3,5 @@ scikit-learn
 scipy
 diffpy.utils
 pandas
-matplotlib
+matplotlib-base
 bg-mpl-stylesheets
