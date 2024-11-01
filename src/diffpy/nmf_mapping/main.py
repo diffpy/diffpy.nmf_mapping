@@ -6,7 +6,7 @@ from datetime import datetime
 
 import numpy as np
 
-from diffpy.nmf_mapping import nmf
+import diffpy.nmf_mapping.nmf_mapping_code as nmf
 
 
 def boolean_string(s):
