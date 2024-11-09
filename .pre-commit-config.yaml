@@ -15,6 +15,7 @@ repos:
     hooks:
       - id: check-yaml
       - id: end-of-file-fixer
+        exclude: \.json$
       - id: trailing-whitespace
       - id: check-case-conflict
       - id: check-merge-conflict
