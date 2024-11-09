@@ -132,8 +132,6 @@ def main(args=None):
             n_iter=args1.n_iter,
         )
 
-    print(f"Number of components: {len(df_components.columns)}")
-
     fig1 = nmf.component_plot(df_components, args1.xrd, args1.x_units, args1.show)
     fig2 = nmf.component_ratio_plot(df_component_weight_timeseries, args1.show)
     fig3 = nmf.reconstruction_error_plot(df_reconstruction_error, args1.show)
