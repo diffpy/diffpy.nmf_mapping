@@ -81,9 +81,7 @@ def load_data(dir, xrd=False):
         x = new_dat[:, 0]
         y = new_dat[:, 1]
         if len(x) != len(x_set) or not all(x == x_set):
-            f = interpolate.interp1d(
-                x, y, bounds_error=False, fill_value="extrapolate"
-            )
+            f = interpolate.interp1d(x, y, bounds_error=False, fill_value="extrapolate")
             data_arr[i][:, 1] = f(x_set)
             data_arr[i][:, 0] = x_set
         else:
@@ -154,8 +152,7 @@ def NMF_decomposition(
             else:
                 df_list.append(
                     x_vs_y_df_preprocess[
-                        (x_vs_y_df_preprocess.index >= x_low)
-                        & (x_vs_y_df_preprocess.index <= x_high)
+                        (x_vs_y_df_preprocess.index >= x_low) & (x_vs_y_df_preprocess.index <= x_high)
                     ]
                 )
         x_vs_y_df = pd.concat(df_list)
@@ -178,9 +175,7 @@ def NMF_decomposition(
         pca.fit(x_vs_y_df.to_numpy().T)
         pca_number_components = len(pca.components_)
         pca_explained_variance = pca.explained_variance_ratio_
-        df_explained_var_ratio = pd.DataFrame(
-            pd.Series(pca_explained_variance)
-        )
+        df_explained_var_ratio = pd.DataFrame(pd.Series(pca_explained_variance))
         df_explained_var_ratio.index = df_explained_var_ratio.index + 1
     sweeping_grid = range(1, max_comp + 1, 1)
     for i in sweeping_grid:
@@ -193,9 +188,7 @@ def NMF_decomposition(
     if thresh is None:
         if improve_thresh is not None:
             if improve_thresh > 1 or improve_thresh < 0:
-                raise ValueError(
-                    "Invalid improvement threshold ratio. Must be between 0 and 1."
-                )
+                raise ValueError("Invalid improvement threshold ratio. Must be between 0 and 1.")
             thresh = nmf_ncomp_selection(nmf_loss, rtol=improve_thresh)
         elif pca_thresh:
             thresh = pca_number_components
@@ -218,9 +211,7 @@ def NMF_decomposition(
     nmf_weight /= nmf_weight.sum(1)[:, np.newaxis]
     nmf_weight = nmf_weight.T
     nmf_weight = np.array([nmf_weight[s, :] for s in range(n_comp)])
-    df_component_weight_timeseries = pd.DataFrame(
-        nmf_weight, index=range(n_comp)
-    )
+    df_component_weight_timeseries = pd.DataFrame(nmf_weight, index=range(n_comp))
 
     if pca_thresh:
         return (
@@ -425,14 +416,10 @@ def nmf_ncomp_selection(loss, rtol=None):
         rtol = 1e-2
         (inds,) = np.where(imp_ratio <= rtol)
         if not list(inds):
-            print(
-                "Improvement ratio of 1E-2 not met. Inspect data and impose manual cutoff"
-            )
+            print("Improvement ratio of 1E-2 not met. Inspect data and impose manual cutoff")
             len(loss)
             return starting_len
     if not list(inds):
-        print(
-            f"Improvement ratio of {rtol} not met. Inspect data and impose manual cutoff"
-        )
+        print(f"Improvement ratio of {rtol} not met. Inspect data and impose manual cutoff")
         return starting_len
     return inds[0] + 1
