@@ -1,9 +1,10 @@
-"""Unit tests for __version__.py"""
+"""Unit tests for __version__.py."""
 
-import diffpy.nmf_mapping
+import diffpy.nmf_mapping  # noqa
 
 
 def test_package_version():
-    """Ensure the package version is defined and not set to the initial placeholder."""
+    """Ensure the package version is defined and not set to the initial
+    placeholder."""
     assert hasattr(diffpy.nmf_mapping, "__version__")
     assert diffpy.nmf_mapping.__version__ != "0.0.0"
