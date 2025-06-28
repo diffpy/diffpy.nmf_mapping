@@ -91,3 +91,10 @@ target/
 
 # Ipython Notebook
 .ipynb_checkpoints
+
+# version information
+setup.cfg
+/src/diffpy/*/version.cfg
+
+# Rever
+rever/
