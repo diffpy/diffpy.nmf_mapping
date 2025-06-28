@@ -13,8 +13,7 @@
 #
 ##############################################################################
 
-"""nmf_mapping - tools for performing NMF on PDF and XRD data.
-"""
+"""nmf_mapping - tools for performing NMF on PDF and XRD data."""
 
 
 __import__("pkg_resources").declare_namespace(__name__)
