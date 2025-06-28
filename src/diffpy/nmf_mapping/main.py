@@ -19,10 +19,9 @@ def boolean_string(s):
 
 
 def main(args=None):
-    """
-    Parses directory argument supplied by user and conducts NMF decomposition
-    analysis (computes NMF decomposition and shows the weights over time).
-    """
+    """Parses directory argument supplied by user and conducts NMF
+    decomposition analysis (computes NMF decomposition and shows the weights
+    over time)."""
 
     _BANNER = """
     This is a package which takes a directory of 1D diffraction files

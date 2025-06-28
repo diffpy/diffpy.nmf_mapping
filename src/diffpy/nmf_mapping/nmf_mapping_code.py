@@ -36,9 +36,8 @@ def natural_keys_file_name(text):
 
 
 def load_data(dir, xrd=False):
-    """
-    Takes a directory and selects out the .gr or .xy or .xye files. Loads these files
-    into a 3D numpy array.
+    """Takes a directory and selects out the .gr or .xy or .xye files. Loads
+    these files into a 3D numpy array.
 
     Parameters
     ----------
@@ -106,12 +105,11 @@ def NMF_decomposition(
     n_iter=None,
     pca_thresh=None,
 ):
-    """
-    Takes a 3D array of PDFs and returns the structurally significant
+    """Takes a 3D array of PDFs and returns the structurally significant
     components present in all of the PDFs (or XRD) provided in r vs gr format,
     as well as the ratio of each in the data list, as well as the
-    reconstruction error found in the first 10 components regardless
-    of the threshold.
+    reconstruction error found in the first 10 components regardless of the
+    threshold.
 
     Parameters
     ----------
@@ -228,9 +226,8 @@ def NMF_decomposition(
 
 
 def component_plot(df_components, xrd=False, x_units=None, show=True):
-    """
-    Takes a dataframe containing the NMF components as columns and x index,
-    Returns a matplotlib figure representing the constituent component plot
+    """Takes a dataframe containing the NMF components as columns and x index,
+    Returns a matplotlib figure representing the constituent component plot.
 
     Parameters
     ----------
@@ -247,7 +244,6 @@ def component_plot(df_components, xrd=False, x_units=None, show=True):
     -------
     fig: matplotlib figure
         figure on absolute scale
-
     """
 
     df = df_components.copy()
@@ -284,10 +280,10 @@ def component_plot(df_components, xrd=False, x_units=None, show=True):
 
 
 def component_ratio_plot(df_component_weight_timeseries, show=True):
-    """
-    Takes a pandas df with the index representing the components and the columns
-    representing the different experiments, the values being the weight.
-    Returns a matplotlib figure of the component ratio across the files provided.
+    """Takes a pandas df with the index representing the components and the
+    columns representing the different experiments, the values being the
+    weight. Returns a matplotlib figure of the component ratio across the files
+    provided.
 
     Parameters
     ----------
@@ -300,7 +296,6 @@ def component_ratio_plot(df_component_weight_timeseries, show=True):
     -------
     fig: matplotlib figure
         figure on absolute scale
-
     """
 
     df = df_component_weight_timeseries.copy()
@@ -321,9 +316,8 @@ def component_ratio_plot(df_component_weight_timeseries, show=True):
 
 
 def reconstruction_error_plot(df_reconstruction_error, show=True):
-    """
-    Takes a pandas df with one column representing the reconstruction error and
-    an index of the phase component. Returns a matplotlib figure of the
+    """Takes a pandas df with one column representing the reconstruction error
+    and an index of the phase component. Returns a matplotlib figure of the
     reconstruction error plot.
 
     Parameters
@@ -337,7 +331,6 @@ def reconstruction_error_plot(df_reconstruction_error, show=True):
     -------
     fig: matplotlib figure
         figure on absolute scale with removed files
-
     """
 
     df = df_reconstruction_error.copy()
@@ -360,9 +353,8 @@ def reconstruction_error_plot(df_reconstruction_error, show=True):
 
 
 def explained_variance_plot(df_explained_var_ratio, show=True):
-    """
-    Takes a pandas df with one column representing the reconstruction error and
-    an index of the phase component. Returns a matplotlib figure of the
+    """Takes a pandas df with one column representing the reconstruction error
+    and an index of the phase component. Returns a matplotlib figure of the
     reconstruction error plot.
 
     Parameters
@@ -376,7 +368,6 @@ def explained_variance_plot(df_explained_var_ratio, show=True):
     -------
     fig: matplotlib figure
         figure on absolute scale with removed files
-
     """
 
     df = df_explained_var_ratio.copy()
