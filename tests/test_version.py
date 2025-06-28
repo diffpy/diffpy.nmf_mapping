@@ -1,5 +1,6 @@
 """Unit tests for __version__.py."""
 
+
 import diffpy.nmf_mapping  # noqa
 
 

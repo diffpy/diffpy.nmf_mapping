@@ -31,7 +31,11 @@ def main(args=None):
     as well as the reconstruction error as a fxn of component
     """
 
-    parser = ArgumentParser(prog="nmf_mapping", description=_BANNER, formatter_class=RawTextHelpFormatter)
+    parser = ArgumentParser(
+        prog="nmf_mapping",
+        description=_BANNER,
+        formatter_class=RawTextHelpFormatter,
+    )
 
     def tup(s):
         if not isinstance(s, str):
@@ -45,7 +49,10 @@ def main(args=None):
 
     # args
     parser.add_argument(
-        "directory", default=None, type=str, help="a directory of PDFs to calculate NMF decomposition"
+        "directory",
+        default=None,
+        type=str,
+        help="a directory of PDFs to calculate NMF decomposition",
     )
     group = parser.add_mutually_exclusive_group()
     parser.add_argument(
@@ -105,25 +112,37 @@ def main(args=None):
         nargs="*",
         help="the x-range over which to calculate NMF, can be multiple ranges (e.g. --xrange 5,10 12,15)",
     )
-    parser.add_argument("--show", default=True, type=boolean_string, help="whether to show the plot")
+    parser.add_argument(
+        "--show",
+        default=True,
+        type=boolean_string,
+        help="whether to show the plot",
+    )
     args0 = Namespace()
     args1, _ = parser.parse_known_args(args, namespace=args0)
 
     input_list, data_list = nmf.load_data(args1.directory, args1.xrd)
     if args1.pca_thresh:
-        df_components, df_component_weight_timeseries, df_reconstruction_error, df_explained_var_ratio = (
-            nmf.NMF_decomposition(
-                input_list,
-                args1.xrange,
-                args1.threshold,
-                additional_comp=False,
-                improve_thresh=args1.improve_thresh,
-                n_iter=args1.n_iter,
-                pca_thresh=args1.pca_thresh,
-            )
+        (
+            df_components,
+            df_component_weight_timeseries,
+            df_reconstruction_error,
+            df_explained_var_ratio,
+        ) = nmf.NMF_decomposition(
+            input_list,
+            args1.xrange,
+            args1.threshold,
+            additional_comp=False,
+            improve_thresh=args1.improve_thresh,
+            n_iter=args1.n_iter,
+            pca_thresh=args1.pca_thresh,
         )
     else:
-        df_components, df_component_weight_timeseries, df_reconstruction_error = nmf.NMF_decomposition(
+        (
+            df_components,
+            df_component_weight_timeseries,
+            df_reconstruction_error,
+        ) = nmf.NMF_decomposition(
             input_list,
             args1.xrange,
             args1.threshold,
@@ -149,7 +168,11 @@ def main(args=None):
             os.path.join(os.getcwd(), "nmf_result", "component_index_vs_pratio_col.json")
         )
         df_component_weight_timeseries.to_csv(
-            os.path.join(os.getcwd(), "nmf_result", output_fn + "component_row_pratio_col.txt"),
+            os.path.join(
+                os.getcwd(),
+                "nmf_result",
+                output_fn + "component_row_pratio_col.txt",
+            ),
             header=None,
             index=False,
             sep=" ",
@@ -196,7 +219,11 @@ def main(args=None):
 
             if args1.xrd:
                 np.savetxt(
-                    os.path.join(os.getcwd(), "nmf_result", output_fn + f"_comp{i}" + ".xy"),
+                    os.path.join(
+                        os.getcwd(),
+                        "nmf_result",
+                        output_fn + f"_comp{i}" + ".xy",
+                    ),
                     data,
                     header=f"NMF Generated XRD\nSource = nmfMapping\n"
                     f"Date = {output_fn}\n{args1.x_units} Intensity\n",
@@ -205,7 +232,11 @@ def main(args=None):
                 )
             else:
                 np.savetxt(
-                    os.path.join(os.getcwd(), "nmf_result", output_fn + f"_comp{i}" + ".cgr"),
+                    os.path.join(
+                        os.getcwd(),
+                        "nmf_result",
+                        output_fn + f"_comp{i}" + ".cgr",
+                    ),
                     data,
                     header=f"NMF Generated PDF\nSource: nmfMapping\n" f"Date: {output_fn}\nr g",
                     fmt="%s",

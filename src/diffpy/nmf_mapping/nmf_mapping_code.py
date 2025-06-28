@@ -98,7 +98,13 @@ def load_data(dir, xrd=False):
 
 # TODO Add regularization on the frobenius norm in order to prevent creation of an excessive number of components
 def NMF_decomposition(
-    data_arr, x_range=None, thresh=None, additional_comp=False, improve_thresh=None, n_iter=None, pca_thresh=None
+    data_arr,
+    x_range=None,
+    thresh=None,
+    additional_comp=False,
+    improve_thresh=None,
+    n_iter=None,
+    pca_thresh=None,
 ):
     """
     Takes a 3D array of PDFs and returns the structurally significant
@@ -208,8 +214,17 @@ def NMF_decomposition(
     df_component_weight_timeseries = pd.DataFrame(nmf_weight, index=range(n_comp))
 
     if pca_thresh:
-        return df_components, df_component_weight_timeseries, df_reconstruction_error, df_explained_var_ratio
-    return df_components, df_component_weight_timeseries, df_reconstruction_error
+        return (
+            df_components,
+            df_component_weight_timeseries,
+            df_reconstruction_error,
+            df_explained_var_ratio,
+        )
+    return (
+        df_components,
+        df_component_weight_timeseries,
+        df_reconstruction_error,
+    )
 
 
 def component_plot(df_components, xrd=False, x_units=None, show=True):
@@ -244,7 +259,11 @@ def component_plot(df_components, xrd=False, x_units=None, show=True):
     shift = max_range
     # seq to align with input phase
     for i, s in enumerate(data_list):
-        ax.plot(df.index.to_numpy(dtype=np.single), df[s].to_numpy() + i * shift, label=s)
+        ax.plot(
+            df.index.to_numpy(dtype=np.single),
+            df[s].to_numpy() + i * shift,
+            label=s,
+        )
     ax.legend(loc="best")
     if xrd:
         if x_units == "twotheta" or x_units == "ttheta":
