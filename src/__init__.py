@@ -12,7 +12,6 @@
 # See LICENSE.txt for license information.
 #
 ##############################################################################
-
 """nmf_mapping - tools for performing NMF on PDF and XRD data."""
 
 

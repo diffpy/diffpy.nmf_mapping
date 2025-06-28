@@ -12,7 +12,6 @@
 # See LICENSE.txt for license information.
 #
 ##############################################################################
-
 """Definition of __version__ and __date__ for diffpy.nmf_mapping."""
 
 __id__ = "$Id$"
