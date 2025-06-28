@@ -24,8 +24,9 @@ test_map = [
 
 @pytest.fixture(scope="session")
 def temp_dir():
-    """A test fixture that creates and destroys tes outputs in a temporary
-    directory.
+    """A test fixture that creates and destroys tes outputs in a
+    temporary directory.
+
     This will yield the path to the directory.
     """
     cwd = os.getcwd()

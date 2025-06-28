@@ -36,9 +36,8 @@ def natural_keys_file_name(text):
 
 
 def load_data(dir, xrd=False):
-    """
-    Takes a directory and selects out the .gr or .xy or .xye files. Loads these files
-    into a 3D numpy array.
+    """Takes a directory and selects out the .gr or .xy or .xye files.
+    Loads these files into a 3D numpy array.
 
     Parameters
     ----------
@@ -81,7 +80,9 @@ def load_data(dir, xrd=False):
         x = new_dat[:, 0]
         y = new_dat[:, 1]
         if len(x) != len(x_set) or not all(x == x_set):
-            f = interpolate.interp1d(x, y, bounds_error=False, fill_value="extrapolate")
+            f = interpolate.interp1d(
+                x, y, bounds_error=False, fill_value="extrapolate"
+            )
             data_arr[i][:, 1] = f(x_set)
             data_arr[i][:, 0] = x_set
         else:
@@ -106,11 +107,10 @@ def NMF_decomposition(
     n_iter=None,
     pca_thresh=None,
 ):
-    """
-    Takes a 3D array of PDFs and returns the structurally significant
-    components present in all of the PDFs (or XRD) provided in r vs gr format,
-    as well as the ratio of each in the data list, as well as the
-    reconstruction error found in the first 10 components regardless
+    """Takes a 3D array of PDFs and returns the structurally significant
+    components present in all of the PDFs (or XRD) provided in r vs gr
+    format, as well as the ratio of each in the data list, as well as
+    the reconstruction error found in the first 10 components regardless
     of the threshold.
 
     Parameters
@@ -152,7 +152,8 @@ def NMF_decomposition(
             else:
                 df_list.append(
                     x_vs_y_df_preprocess[
-                        (x_vs_y_df_preprocess.index >= x_low) & (x_vs_y_df_preprocess.index <= x_high)
+                        (x_vs_y_df_preprocess.index >= x_low)
+                        & (x_vs_y_df_preprocess.index <= x_high)
                     ]
                 )
         x_vs_y_df = pd.concat(df_list)
@@ -175,7 +176,9 @@ def NMF_decomposition(
         pca.fit(x_vs_y_df.to_numpy().T)
         pca_number_components = len(pca.components_)
         pca_explained_variance = pca.explained_variance_ratio_
-        df_explained_var_ratio = pd.DataFrame(pd.Series(pca_explained_variance))
+        df_explained_var_ratio = pd.DataFrame(
+            pd.Series(pca_explained_variance)
+        )
         df_explained_var_ratio.index = df_explained_var_ratio.index + 1
     sweeping_grid = range(1, max_comp + 1, 1)
     for i in sweeping_grid:
@@ -188,7 +191,9 @@ def NMF_decomposition(
     if thresh is None:
         if improve_thresh is not None:
             if improve_thresh > 1 or improve_thresh < 0:
-                raise ValueError("Invalid improvement threshold ratio. Must be between 0 and 1.")
+                raise ValueError(
+                    "Invalid improvement threshold ratio. Must be between 0 and 1."
+                )
             thresh = nmf_ncomp_selection(nmf_loss, rtol=improve_thresh)
         elif pca_thresh:
             thresh = pca_number_components
@@ -211,7 +216,9 @@ def NMF_decomposition(
     nmf_weight /= nmf_weight.sum(1)[:, np.newaxis]
     nmf_weight = nmf_weight.T
     nmf_weight = np.array([nmf_weight[s, :] for s in range(n_comp)])
-    df_component_weight_timeseries = pd.DataFrame(nmf_weight, index=range(n_comp))
+    df_component_weight_timeseries = pd.DataFrame(
+        nmf_weight, index=range(n_comp)
+    )
 
     if pca_thresh:
         return (
@@ -228,9 +235,9 @@ def NMF_decomposition(
 
 
 def component_plot(df_components, xrd=False, x_units=None, show=True):
-    """
-    Takes a dataframe containing the NMF components as columns and x index,
-    Returns a matplotlib figure representing the constituent component plot
+    """Takes a dataframe containing the NMF components as columns and x
+    index, Returns a matplotlib figure representing the constituent
+    component plot.
 
     Parameters
     ----------
@@ -247,7 +254,6 @@ def component_plot(df_components, xrd=False, x_units=None, show=True):
     -------
     fig: matplotlib figure
         figure on absolute scale
-
     """
 
     df = df_components.copy()
@@ -284,10 +290,10 @@ def component_plot(df_components, xrd=False, x_units=None, show=True):
 
 
 def component_ratio_plot(df_component_weight_timeseries, show=True):
-    """
-    Takes a pandas df with the index representing the components and the columns
-    representing the different experiments, the values being the weight.
-    Returns a matplotlib figure of the component ratio across the files provided.
+    """Takes a pandas df with the index representing the components and
+    the columns representing the different experiments, the values being
+    the weight. Returns a matplotlib figure of the component ratio
+    across the files provided.
 
     Parameters
     ----------
@@ -300,7 +306,6 @@ def component_ratio_plot(df_component_weight_timeseries, show=True):
     -------
     fig: matplotlib figure
         figure on absolute scale
-
     """
 
     df = df_component_weight_timeseries.copy()
@@ -321,10 +326,9 @@ def component_ratio_plot(df_component_weight_timeseries, show=True):
 
 
 def reconstruction_error_plot(df_reconstruction_error, show=True):
-    """
-    Takes a pandas df with one column representing the reconstruction error and
-    an index of the phase component. Returns a matplotlib figure of the
-    reconstruction error plot.
+    """Takes a pandas df with one column representing the reconstruction
+    error and an index of the phase component. Returns a matplotlib
+    figure of the reconstruction error plot.
 
     Parameters
     ----------
@@ -337,7 +341,6 @@ def reconstruction_error_plot(df_reconstruction_error, show=True):
     -------
     fig: matplotlib figure
         figure on absolute scale with removed files
-
     """
 
     df = df_reconstruction_error.copy()
@@ -360,10 +363,9 @@ def reconstruction_error_plot(df_reconstruction_error, show=True):
 
 
 def explained_variance_plot(df_explained_var_ratio, show=True):
-    """
-    Takes a pandas df with one column representing the reconstruction error and
-    an index of the phase component. Returns a matplotlib figure of the
-    reconstruction error plot.
+    """Takes a pandas df with one column representing the reconstruction
+    error and an index of the phase component. Returns a matplotlib
+    figure of the reconstruction error plot.
 
     Parameters
     ----------
@@ -376,7 +378,6 @@ def explained_variance_plot(df_explained_var_ratio, show=True):
     -------
     fig: matplotlib figure
         figure on absolute scale with removed files
-
     """
 
     df = df_explained_var_ratio.copy()
@@ -416,10 +417,14 @@ def nmf_ncomp_selection(loss, rtol=None):
         rtol = 1e-2
         (inds,) = np.where(imp_ratio <= rtol)
         if not list(inds):
-            print("Improvement ratio of 1E-2 not met. Inspect data and impose manual cutoff")
+            print(
+                "Improvement ratio of 1E-2 not met. Inspect data and impose manual cutoff"
+            )
             len(loss)
             return starting_len
     if not list(inds):
-        print(f"Improvement ratio of {rtol} not met. Inspect data and impose manual cutoff")
+        print(
+            f"Improvement ratio of {rtol} not met. Inspect data and impose manual cutoff"
+        )
         return starting_len
     return inds[0] + 1
