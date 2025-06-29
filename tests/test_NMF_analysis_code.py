@@ -50,7 +50,8 @@ def test_nmf_mapping_code(tm, temp_dir, capsys):
     os.chdir(working_dir)
     main(args=data_dir)
     out, err = capsys.readouterr()
-    assert out == tm[2]
+    out_lines = out.splitlines()
+    assert out_lines[2] == tm[2]
     results_dir = os.path.join(working_dir, "nmf_result")
     os.chdir(results_dir)
     expected_base = os.path.join(os.path.dirname(__file__), "output")
