@@ -12,12 +12,16 @@ dir = Path(__file__).parent.resolve()
 data_dir = os.path.join(dir, "data/synthetic_r_vs_gr")
 
 test_map = [
-    ([data_dir, "--xrange", "5,10"], "output_1", "Number of components: 10"),
-    ([data_dir], "output_2", "Number of components: 10"),
     (
-        [data_dir, "--xrange", "5,10", "12,15"],
+        [data_dir, "--xrange", "5,10", "--threshold", "3"],
+        "output_1",
+        "Number of components: 3\n",
+    ),
+    ([data_dir, "--threshold", "3"], "output_2", "Number of components: 3\n"),
+    (
+        [data_dir, "--xrange", "5,10", "12,15", "--threshold", "3"],
         "output_3",
-        "Number of components: 10",
+        "Number of components: 3\n",
     ),
 ]
 
@@ -50,8 +54,7 @@ def test_nmf_mapping_code(tm, temp_dir, capsys):
     os.chdir(working_dir)
     main(args=data_dir)
     out, err = capsys.readouterr()
-    out_lines = out.splitlines()
-    assert out_lines[2] == tm[2]
+    assert out == tm[2]
     results_dir = os.path.join(working_dir, "nmf_result")
     os.chdir(results_dir)
     expected_base = os.path.join(os.path.dirname(__file__), "output")
