@@ -12,10 +12,14 @@ dir = Path(__file__).parent.resolve()
 data_dir = os.path.join(dir, "data/synthetic_r_vs_gr")
 
 test_map = [
-    ([data_dir, "--xrange", "5,10"], "output_1", "Number of components: 3\n"),
-    ([data_dir], "output_2", "Number of components: 3\n"),
     (
-        [data_dir, "--xrange", "5,10", "12,15"],
+        [data_dir, "--xrange", "5,10", "--threshold", "3"],
+        "output_1",
+        "Number of components: 3\n",
+    ),
+    ([data_dir, "--threshold", "3"], "output_2", "Number of components: 3\n"),
+    (
+        [data_dir, "--xrange", "5,10", "12,15", "--threshold", "3"],
         "output_3",
         "Number of components: 3\n",
     ),
