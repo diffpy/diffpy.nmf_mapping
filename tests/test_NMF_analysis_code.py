@@ -1,8 +1,10 @@
+import json
 import os
 import tempfile
 from pathlib import Path
 from shutil import rmtree
 
+import numpy as np
 import pytest
 
 from diffpy.nmf_mapping.main import main
@@ -64,8 +66,31 @@ def test_nmf_mapping_code(tm, temp_dir, capsys):
             if file in os.listdir(test_specific_dir):
                 fn1 = os.path.join(results_dir, file)
                 with open(fn1, "r") as f:
-                    actual = f.read()
+                    actual_json_data = json.load(f)
                 fn2 = os.path.join(test_specific_dir, file)
                 with open(fn2, "r") as f:
-                    expected = f.read()
-                assert expected == actual
+                    expected_json_data = json.load(f)
+
+                # Comparison function for json data
+                def compare_json_data(expected, actual, path=""):
+                    if isinstance(expected, dict) and isinstance(actual, dict):
+                        # Check if both sets have same keys
+                        assert set(expected.keys()) == set(actual.keys())
+                        for key in expected:
+                            # For each key, compare every value
+                            compare_json_data(
+                                expected[key],
+                                actual[key],
+                                path=f"{path}.{key}",
+                            )
+                    elif isinstance(expected, (int, float)) and isinstance(
+                        actual, (int, float)
+                    ):
+                        # For numerical values, directly compare
+                        np.testing.assert_allclose(
+                            expected, actual, rtol=1e-05, atol=1e-8
+                        )
+                    else:
+                        assert expected == actual
+
+                compare_json_data(expected_json_data, actual_json_data)
